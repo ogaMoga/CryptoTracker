@@ -8,11 +8,12 @@
     tools:context=".screens.search.SearchFragment">
 
     <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_sv"
         android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:queryHint="Find name or symbol"
-        app:iconifiedByDefault="false"
+        android:queryHint="Find name or symbol"
+        android:iconifiedByDefault="false"
         android:inputType="text"
         />
 
