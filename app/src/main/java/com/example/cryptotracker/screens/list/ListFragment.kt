@@ -1,12 +1,11 @@
 package com.example.cryptotracker.screens.list
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
@@ -35,7 +34,6 @@ class ListFragment : Fragment() {
         view.initViews()
 
         // place for click listeners
-
     }
 
     private fun View.initViews() {
@@ -44,6 +42,14 @@ class ListFragment : Fragment() {
         viewPager = findViewById(R.id.viewpager)
 
         navController = findNavController()
+
+        setupViewPager(viewPager)
+        tabLayout.setupWithViewPager(viewPager)
+    }
+
+    private fun setupViewPager(viewPager: ViewPager?) {
+        val adapter = MyPagerAdapter(parentFragmentManager, isSearch = false)
+        viewPager!!.adapter = adapter
     }
 
 }

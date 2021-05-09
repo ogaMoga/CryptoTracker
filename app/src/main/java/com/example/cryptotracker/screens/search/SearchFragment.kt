@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.example.cryptotracker.R
+import com.example.cryptotracker.screens.list.MyPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
 class SearchFragment : Fragment() {
@@ -42,6 +43,14 @@ class SearchFragment : Fragment() {
         viewPager = findViewById(R.id.search_viewpager)
 
         navController = findNavController()
+
+        setupViewPager(viewPager)
+        tabLayout.setupWithViewPager(viewPager)
+    }
+
+    private fun setupViewPager(viewPager: ViewPager?) {
+        val adapter = MyPagerAdapter(parentFragmentManager, isSearch = true)
+        viewPager!!.adapter = adapter
     }
 
 }
