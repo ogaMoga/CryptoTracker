@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.example.cryptotracker.R
 import com.google.android.material.tabs.TabLayout
+import java.lang.Thread.sleep
 
 
 class ListFragment : Fragment() {
