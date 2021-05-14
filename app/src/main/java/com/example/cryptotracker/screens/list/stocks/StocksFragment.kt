@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptotracker.R
-import com.example.cryptotracker.data.Coin
+import com.example.cryptotracker.screens.list.ListViewModel
 import com.example.cryptotracker.screens.list.RecAdapter
 
 class StocksFragment : Fragment() {
+
+    private lateinit var viewModel: ListViewModel
 
     private lateinit var rv: RecyclerView
 
@@ -24,6 +26,7 @@ class StocksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         view.initView()
 
         // place for click listeners
@@ -32,12 +35,7 @@ class StocksFragment : Fragment() {
 
     private fun View.initView() {
         rv = findViewById(R.id.stocks_rv)
-        rv.adapter = RecAdapter(listOf(Coin("BTC", "Bitcoin", 60000.toDouble(), 0.toDouble(), true),
-                Coin("ETH", "Ethereum", 3000.toDouble(), 0.toDouble(), true),
-                Coin("XRP", "XRP", 1.46.toDouble(), 0.toDouble(), true),
-                Coin("BNB", "Binance Coin", 1476.toDouble(), 0.toDouble(), false),
-                Coin("ADA", "Cardano", 1.74.toDouble(), 0.toDouble(), true),
-                Coin("DOGE", "Dogecoin", 60000.toDouble(), 0.toDouble(), false)))
+        rv.adapter = RecAdapter(viewModel.stocksCoins.value)
     }
 
 }
