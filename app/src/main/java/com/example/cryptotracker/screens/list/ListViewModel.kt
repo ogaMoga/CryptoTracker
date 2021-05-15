@@ -1,11 +1,19 @@
 package com.example.cryptotracker.screens.list
 
+import android.util.Log
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cryptotracker.data.Coin
 
 class ListViewModel : ViewModel() {
+
+    fun onStarClicked(name: String, state: Boolean) {
+        _stocksCoins.value?.forEach { coin -> if (coin.name == name) coin.isFav = state }
+        _favCoins.value = _stocksCoins.value?.filter { coin -> coin.isFav }?.toMutableList()
+    }
+
     private val _stocksCoins = MutableLiveData<MutableList<Coin>>()
     val stocksCoins : LiveData<MutableList<Coin>>
         get() = _stocksCoins
