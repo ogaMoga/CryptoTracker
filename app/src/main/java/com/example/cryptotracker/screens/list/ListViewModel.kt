@@ -10,7 +10,7 @@ import com.example.cryptotracker.data.Coin
 class ListViewModel : ViewModel() {
 
     fun onStarClicked(name: String, state: Boolean) {
-        _stocksCoins.value?.forEach { coin -> if (coin.name == name) coin.isFav = state }
+        _stocksCoins.value?.find {coin -> coin.name == name}?.isFav = state
         _favCoins.value = _stocksCoins.value?.filter { coin -> coin.isFav }?.toMutableList()
     }
 
@@ -30,6 +30,9 @@ class ListViewModel : ViewModel() {
                 Coin("ADA", "Cardano", 1.74.toDouble(), 0.toDouble(), true),
                 Coin("DOGE", "Dogecoin", 60000.toDouble(), 0.toDouble(), false))
         _favCoins.value = _stocksCoins.value!!.filter { coin -> coin.isFav }.toMutableList()
+
+
     }
 
 }
+
