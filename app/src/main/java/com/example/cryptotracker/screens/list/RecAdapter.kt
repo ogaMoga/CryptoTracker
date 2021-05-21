@@ -1,5 +1,6 @@
 package com.example.cryptotracker.screens.list
 
+import android.content.res.Resources
 import android.net.sip.SipSession
 import android.view.LayoutInflater
 import android.view.View
@@ -55,8 +56,8 @@ class RecAdapter(private var values: MutableList<Coin>, private val onStarClickL
             name.text = coin.name
             desc.text = coin.desc
             star.isChecked = coin.isFav
-            price.text = coin.price.toString()
-            diff.text = coin.priceDiff.toString()
+            price.text = "$" + coin.price
+            diff.text = coin.priceDiff.toString() + "%"
         }
 
         init {
