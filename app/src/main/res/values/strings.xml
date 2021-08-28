@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">CryptoTracker</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="diff"> %1$d%% </string>
+    <string name="fragment__start__search_tv">Find name or symbol</string>
+    <string name="fragment__search_empty__popular_tv">Popular requests</string>
+    <string name="fragment__search_empty__history_tv">You\'ve searched for this</string>
 </resources>
