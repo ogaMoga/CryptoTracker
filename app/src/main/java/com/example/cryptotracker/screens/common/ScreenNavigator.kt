@@ -1,38 +1,54 @@
 package com.example.cryptotracker.screens.common
 
 import android.os.Bundle
-import androidx.annotation.IdRes
-import androidx.core.os.bundleOf
-import androidx.navigation.NavController
-import com.example.cryptotracker.App
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.cryptotracker.R
+import com.example.cryptotracker.screens.card.CardFragment
+import com.example.cryptotracker.screens.search.SearchFragment
+import com.example.cryptotracker.screens.start.StartFragment
+import com.ncapdevi.fragnav.FragNavController
+import com.ncapdevi.fragnav.FragNavTransactionOptions
 
-class ScreenNavigator(private val navController: NavController) {
+class ScreenNavigator() : FragNavController.RootFragmentListener {
+    private lateinit var fragNavController: FragNavController
+
+    fun init(fragmentManager: FragmentManager, savedInstanceState: Bundle?) {
+        fragNavController = FragNavController(fragmentManager, R.id.activity_container)
+        fragNavController.apply {
+            rootFragmentListener = this@ScreenNavigator
+            defaultTransactionOptions = FragNavTransactionOptions
+                .newBuilder()
+                .customAnimations(
+                    R.anim.fade_in,
+                    R.anim.fade_out,
+                    R.anim.fade_in,
+                    R.anim.fade_out,
+                )
+                .build()
+            initialize(FragNavController.TAB1, savedInstanceState)
+        }
+    }
+
+    override val numberOfRootFragments: Int
+        get() = 1
+
+    override fun getRootFragment(index: Int): Fragment =
+        StartFragment.newInstance()
+
+    fun onSaveInstanceState(outState: Bundle?) {
+        fragNavController.onSaveInstanceState(outState)
+    }
+
     fun toSearch() {
-        navController.navigateSafe(R.id.action_startFragment_to_searchFragment)
+        fragNavController.pushFragment(SearchFragment.newInstance())
     }
 
-    fun fromSearchToCard(itemId: Int) {
-        val bundle = bundleOf(App.ITEM_ID_KEY to itemId)
-        navController.navigateSafe(R.id.action_searchFragment_to_cardFragment, bundle)
-    }
-
-    fun fromStartToCard(itemId: Int) {
-        val bundle = bundleOf(App.ITEM_ID_KEY to itemId)
-        navController.navigateSafe(R.id.action_startFragment_to_cardFragment, bundle)
+    fun toCard(coinName: String) {
+        fragNavController.pushFragment(CardFragment.newInstance(coinName))
     }
 
     fun navigateUp() {
-        navController.navigateUp()
-    }
-
-    private fun NavController.navigateSafe(
-        @IdRes resId: Int,
-        args: Bundle? = null
-    ) {
-        val action = currentDestination?.getAction(resId) ?: graph.getAction(resId)
-        if (action != null && currentDestination?.id != action.destinationId) {
-            navigate(resId, args)
-        }
+        fragNavController.popFragment()
     }
 }

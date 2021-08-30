@@ -68,7 +68,7 @@
                 />
 
             <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/cv_fav"
+                android:id="@+id/fragment__snippet__star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/fragment__snippet__title"
@@ -94,8 +94,8 @@
                 android:id="@+id/fragment__snippet__diff"
                 app:layout_constraintBaseline_toBaselineOf="@id/fragment__snippet__desc"
                 app:layout_constraintEnd_toEndOf="@id/fragment__snippet__price"
-                android:layout_width="wrap_content"
                 style="@style/text"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:gravity="center_vertical|center_horizontal|top"
                 tools:text="+$10"

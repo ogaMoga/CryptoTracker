@@ -35,4 +35,8 @@ class SearchFragment : Fragment() {
         }
         return rootView
     }
+
+    companion object {
+        fun newInstance(): Fragment = SearchFragment()
+    }
 }

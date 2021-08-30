@@ -2,7 +2,7 @@
 buildscript {
     ext {
         kotlin_version = "1.5.30"
-        navigationVersion = "2.3.5"
+        fragNavVersion = "3.3.0"
         retrofitVersion = "2.9.0"
         roomVersion = "2.3.0"
         koinVersion = "2.2.3"
@@ -26,6 +26,7 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        jcenter()
     }
 }
 

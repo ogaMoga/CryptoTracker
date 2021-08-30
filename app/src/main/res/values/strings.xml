@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">CryptoTracker</string>
-    <string name="diff"> %1$d%% </string>
+    <string name="diff_positive"> %1+$d%% </string>
+    <string name="diff_negative"> %1-$d%% </string>
+
     <string name="fragment__start__search_tv">Find name or symbol</string>
     <string name="fragment__search_empty__popular_tv">Popular requests</string>
     <string name="fragment__search_empty__history_tv">You\'ve searched for this</string>
+    <string name="stocks_tab_title">Stocks</string>
+    <string name="favourite_tab_title">Favourite</string>
 </resources>
