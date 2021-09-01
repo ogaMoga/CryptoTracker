@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cryptotracker.domain.model.Coin
+import com.example.cryptotracker.domain.model.CoinListResource
+import com.example.cryptotracker.domain.model.Status
 import com.example.cryptotracker.domain.usecase.ListUseCase
 import com.example.cryptotracker.screens.common.ScreenNavigator
-import com.example.cryptotracker.utils.CoinListResource
-import com.example.cryptotracker.utils.Status
 import kotlinx.coroutines.launch
 
 class StartViewModel(
@@ -22,15 +21,22 @@ class StartViewModel(
     fun loadItem() {
         viewModelScope.launch {
             postLoadingResource()
-            val result = useCase.loadItems()
-//            val resourceByResult = resourceByResult(result)
+            val result = useCase.loadCoinList()
             postLiveData(result)
         }
     }
 
-    fun setFavourite(position: Int, isFavourite: Boolean) {
+    fun refreshData() {
         viewModelScope.launch {
-            useCase.setFavourite(position, isFavourite)
+            postLoadingResource()
+            val result = useCase.refreshCoinList()
+            postLiveData(result)
+        }
+    }
+
+    fun setFavourite(name: String, isFavourite: Boolean) {
+        viewModelScope.launch {
+            useCase.setFavourite(name, isFavourite)
         }
     }
 
@@ -46,13 +52,4 @@ class StartViewModel(
     private fun postLiveData(coinListResource: CoinListResource) {
         _coinListLiveData.postValue(coinListResource)
     }
-
-//    private fun resourceByResult(result: CoinListResource): CoinListResource =
-//        if (result == null) {
-//            CoinListResource(Status.ERROR, null)
-//        } else {
-//            CoinListResource(Status.SUCCESS, result)
-//        }
-
-
 }

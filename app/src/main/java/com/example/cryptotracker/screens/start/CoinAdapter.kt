@@ -10,6 +10,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.cryptotracker.BuildConfig
 import com.example.cryptotracker.R
 import com.example.cryptotracker.domain.model.Coin
 import kotlin.math.absoluteValue
@@ -47,7 +49,7 @@ class CoinAdapter(
     }
 
     fun setNotFavourite(coin: Coin) {
-        setFavourite(getCoinIndex(coin), false)
+        setFavourite(coins.indexOf(coin), false)
     }
 
     fun addCoin(coin: Coin) {
@@ -56,15 +58,13 @@ class CoinAdapter(
     }
 
     fun removeCoin(coin: Coin) {
-        removeCoin(getCoinIndex(coin))
+        removeCoin(coins.indexOf(coin))
     }
 
     fun removeCoin(position: Int) {
         coins.removeAt(position)
         notifyItemRemoved(position)
     }
-
-    fun getCoinIndex(coin: Coin) = coins.indexOf(coin)
 
     fun getCoin(position: Int): Coin = coins[position]
 }
@@ -90,14 +90,18 @@ class CoinViewHolder(
     @SuppressLint("SetTextI18n")
     fun bind(coin: Coin) {
         title.text = coin.name
-        description.text = coin.desc
-        price.text = coin.price.toString()
-        diff.text = coin.priceDiff.absoluteValue.toString()
-        if (coin.priceDiff >= 0) {
-            diff.text = "+$" + diff.text
+        description.text = coin.description
+        Glide.with(logo.context)
+            .load(BuildConfig.BaseLogoUrl + coin.logo + ".png")
+            .into(logo)
+
+        price.text = "$" + coin.price
+        diff.text = coin.diff.toString()
+        if (coin.diff >= 0) {
+            diff.text = "+" + diff.text + "%"
             diff.setTextColor(Color.rgb(36, 178, 93))
         } else {
-            diff.text = "-$" + diff.text
+            diff.text = diff.text.toString() + "%"
             diff.setTextColor(Color.RED)
         }
 

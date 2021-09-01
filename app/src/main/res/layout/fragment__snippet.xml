@@ -79,14 +79,17 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fragment__snippet__price"
+                app:layout_constraintStart_toEndOf="@id/fragment__snippet__star"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintBaseline_toBaselineOf="@id/fragment__snippet__title"
                 style="@style/text"
                 android:layout_height="50dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="7dp"
                 android:gravity="center_vertical|center_horizontal|top"
-                tools:text="$300"
+                android:maxLength="9"
+                tools:text="$300000001"
                 android:textSize="25sp"
                 />
 
@@ -100,6 +103,7 @@
                 android:gravity="center_vertical|center_horizontal|top"
                 tools:text="+$10"
                 android:textSize="20sp"
+                android:maxLength="6"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

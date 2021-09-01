@@ -2,29 +2,68 @@ package com.example.cryptotracker.domain.usecase
 
 import com.example.cryptotracker.data.repository.ListLocalRepository
 import com.example.cryptotracker.data.repository.ListRemoteRepository
-import com.example.cryptotracker.domain.model.Coin
-import com.example.cryptotracker.utils.CoinListResource
-import com.example.cryptotracker.utils.Status
+import com.example.cryptotracker.domain.model.*
+import com.example.cryptotracker.exception.DatabaseException
+import com.example.cryptotracker.exception.LostConnectionException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class ListUseCase(
     private val localRepository: ListLocalRepository,
     private val remoteRepository: ListRemoteRepository,
 ) {
-    private val data = listOf(
-        Coin("BTC", "Bitcoin", 500.0, 1.0, true),
-        Coin("ETH", "Ethereum", 100.0, -666.0, false),
-        Coin("DOGE", "Dogecoin", 9999.0, 2002.0, true),
-        Coin("PIT", "PopItCoin", 300.0, 13.0, false),
-        Coin("ADA", "Cardano", 2.78, -4.25, false),
-        Coin("BNB", "Binance Coin", 465.02, -6.94, false),
-        Coin("USDT", "Tether", 1.00, -0.04, false),
-        Coin("XRP", "XRP", 1.11, -2.43, true)
-    )
+    suspend fun loadCoinList(): CoinListResource = withContext(Dispatchers.IO) {
+        try {
+            return@withContext CoinListResource(Status.SUCCESS, localRepository.getCoinList())
+        } catch (e: DatabaseException) {
+            val general: GeneralApiResponse
+            try {
+                general = remoteRepository.getGeneralInfo()
+            } catch (e: LostConnectionException) {
+                return@withContext CoinListResource(Status.ERROR, null)
+            }
+            val result = mutableListOf<Coin>()
+            for (coin in general.data) {
+                result.add(Coin(
+                    name = coin.symbol,
+                    description = coin.name,
+                    price = coin.quote.usd.price,
+                    diff = coin.quote.usd.percent_change_24h,
+                    logo = coin.id,
+                    isFavourite = false
+                ))
+            }
 
-    suspend fun loadItems(): CoinListResource =
-        CoinListResource(Status.SUCCESS,  data)
+            localRepository.addCoinList(result)
 
-    fun setFavourite(position: Int, isFavourite: Boolean) {
-        data[position].isFavourite = isFavourite
+            return@withContext CoinListResource(Status.SUCCESS, result)
+        }
+    }
+
+    suspend fun refreshCoinList(): CoinListResource = withContext(Dispatchers.IO) {
+        val remoteRepositoryData = try {
+            remoteRepository.getGeneralInfo()
+        } catch (e: LostConnectionException) {
+            return@withContext CoinListResource(Status.ERROR, null) // quite error
+        }
+        val result = mutableListOf<Coin>()
+        for (coin in remoteRepositoryData.data) {
+            result.add(Coin(
+                name = coin.symbol,
+                description = coin.name,
+                price = coin.quote.usd.price,
+                diff = coin.quote.usd.percent_change_24h,
+                logo = coin.id,
+                isFavourite = false
+            ))
+        }
+
+        localRepository.addCoinList(result)
+
+        return@withContext loadCoinList()
+    }
+
+    suspend fun setFavourite(name: String, isFavourite: Boolean) = withContext(Dispatchers.IO) {
+        localRepository.updateFavourite(name, isFavourite)
     }
 }

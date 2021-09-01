@@ -1,4 +1,4 @@
-package com.example.cryptotracker.utils
+package com.example.cryptotracker.domain.model
 
 enum class Status {
     LOADING,

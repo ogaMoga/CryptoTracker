@@ -12,11 +12,14 @@ object ApiFactory {
 //        .setLenient() if error
         .create()
 
-    val retrofit: Retrofit by lazy {
+    val apiService: ApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
 //            .addConverterFactory(ScalarsConverterFactory.create()) if error
             .addConverterFactory(GsonConverterFactory.create(/*gson*/))
             .build()
+            .create(ApiService::class.java)
+
+
     }
 }

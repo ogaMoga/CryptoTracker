@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cryptotracker.R
-import com.example.cryptotracker.utils.Status
+import com.example.cryptotracker.domain.model.Status
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,6 +20,7 @@ class StartFragment : Fragment() {
     private lateinit var etSearch: AppCompatEditText
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private lateinit var stockCoins: CoinAdapter
     private lateinit var favouriteCoins: CoinAdapter
@@ -34,6 +36,7 @@ class StartFragment : Fragment() {
             etSearch = findViewById(R.id.fragment__start__search_et)
             tabLayout = findViewById(R.id.fragment__start__tablayout)
             viewPager = findViewById(R.id.fragment__start__viewpager)
+            swipeRefreshLayout = findViewById(R.id.fragment__start__swipe_container)
         }
         return rootView
     }
@@ -48,11 +51,23 @@ class StartFragment : Fragment() {
         viewPager.adapter = PagerAdapter(layoutInflater, stockCoins, favouriteCoins)
 
         viewModel.coinListLiveData.observe(viewLifecycleOwner, { coinListResource ->
-            if (coinListResource.status == Status.SUCCESS) {
-                stockCoins.showCoins(coinListResource.data!!)
-                favouriteCoins.showCoins(coinListResource.data.filter { coin -> coin.isFavourite })
+            when(coinListResource.status) {
+                Status.LOADING -> {
+                    swipeRefreshLayout.isRefreshing = true
+                }
+                Status.SUCCESS -> {
+                    swipeRefreshLayout.isRefreshing = false
+                    stockCoins.showCoins(coinListResource.data!!)
+                    favouriteCoins.showCoins(coinListResource.data.filter { coin -> coin.isFavourite })
+                }
+                Status.ERROR -> {
+                    swipeRefreshLayout.isRefreshing = false
+                }
             }
+
         })
+
+        swipeRefreshLayout.setOnRefreshListener { viewModel.refreshData() }
 
         tabLayoutConfiguration()
 
@@ -62,7 +77,7 @@ class StartFragment : Fragment() {
     private val stockStarListener = object : StarClickListener {
         override fun onStarClicked(position: Int, isChecked: Boolean) {
             val coin = stockCoins.getCoin(position)
-            viewModel.setFavourite(position, isChecked)
+            viewModel.setFavourite(coin.name, isChecked)
             stockCoins.setFavourite(position, isChecked)
             if (isChecked) {
                 favouriteCoins.addCoin(coin)
@@ -75,7 +90,7 @@ class StartFragment : Fragment() {
     private val favouriteStarListener = object : StarClickListener {
         override fun onStarClicked(position: Int, isChecked: Boolean) {
             val coin = favouriteCoins.getCoin(position)
-            viewModel.setFavourite(stockCoins.getCoinIndex(coin), false)
+            viewModel.setFavourite(coin.name, false)
             stockCoins.setNotFavourite(coin)
             favouriteCoins.removeCoin(position)
         }
