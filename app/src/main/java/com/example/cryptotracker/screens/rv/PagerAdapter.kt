@@ -1,4 +1,4 @@
-package com.example.cryptotracker.screens.start
+package com.example.cryptotracker.screens.rv
 
 import android.view.LayoutInflater
 import android.view.View

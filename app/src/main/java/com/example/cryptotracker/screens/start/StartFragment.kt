@@ -12,6 +12,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cryptotracker.R
 import com.example.cryptotracker.domain.model.Status
+import com.example.cryptotracker.screens.rv.CoinAdapter
+import com.example.cryptotracker.screens.rv.CoinClickListener
+import com.example.cryptotracker.screens.rv.PagerAdapter
+import com.example.cryptotracker.screens.rv.StarClickListener
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -66,6 +70,12 @@ class StartFragment : Fragment() {
             }
 
         })
+
+        etSearch.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+               viewModel.navigateToSearch()
+            }
+        }
 
         swipeRefreshLayout.setOnRefreshListener { viewModel.refreshData() }
 

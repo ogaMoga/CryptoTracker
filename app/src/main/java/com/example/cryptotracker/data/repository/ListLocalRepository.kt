@@ -19,7 +19,11 @@ class ListLocalRepository(
         }
     }
 
-    fun addCoinList(data: List<Coin>): Boolean = try {
+    suspend fun getNames() : List<String> {
+        return dao.getNames()
+    }
+
+    suspend fun addCoinList(data: List<Coin>): Boolean = try {
         val resultCoins = mutableListOf<CoinsEntity>()
         val resultFavourites = mutableListOf<FavouritesEntity>()
         for (coin in data) {

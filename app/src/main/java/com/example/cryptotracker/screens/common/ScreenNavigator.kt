@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.cryptotracker.R
+import com.example.cryptotracker.domain.model.Coin
 import com.example.cryptotracker.screens.card.CardFragment
 import com.example.cryptotracker.screens.search.SearchFragment
 import com.example.cryptotracker.screens.start.StartFragment
@@ -40,15 +41,19 @@ class ScreenNavigator() : FragNavController.RootFragmentListener {
         fragNavController.onSaveInstanceState(outState)
     }
 
-    fun toSearch() {
-        fragNavController.pushFragment(SearchFragment.newInstance())
+    fun toSearch(data: List<Coin>) {
+        fragNavController.pushFragment(SearchFragment.newInstance(data))
     }
 
     fun toCard(coinName: String) {
         fragNavController.pushFragment(CardFragment.newInstance(coinName))
     }
 
-    fun navigateUp() {
+    fun navigateUp(): Boolean =
+    if (fragNavController.isRootFragment) {
+        false
+    } else {
         fragNavController.popFragment()
+        true
     }
 }

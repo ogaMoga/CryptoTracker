@@ -1,4 +1,4 @@
-package com.example.cryptotracker.screens.start
+package com.example.cryptotracker.screens.rv
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.example.cryptotracker.BuildConfig
 import com.example.cryptotracker.R
 import com.example.cryptotracker.domain.model.Coin
-import kotlin.math.absoluteValue
 
 
 class CoinAdapter(
@@ -96,7 +95,7 @@ class CoinViewHolder(
             .into(logo)
 
         price.text = "$" + coin.price
-        diff.text = coin.diff.toString()
+        diff.text = coin.diff.toString().substring(0, 4)
         if (coin.diff >= 0) {
             diff.text = "+" + diff.text + "%"
             diff.setTextColor(Color.rgb(36, 178, 93))

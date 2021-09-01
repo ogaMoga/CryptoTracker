@@ -19,6 +19,6 @@ val screenModule = module {
     single { ListUseCase(get(), get()) }
     viewModel { StartViewModel(get(), get()) }
 
-    single { SearchUseCase(get()) }
+    single { SearchUseCase(get(), get()) }
     viewModel { SearchViewModel(get(), get()) }
 }

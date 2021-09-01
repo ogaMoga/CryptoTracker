@@ -10,12 +10,15 @@ interface ListDao {
     @Query("SELECT * FROM coins NATURAL JOIN favourites")
     suspend fun getCoinsList(): List<Coin>
 
+    @Query("SELECT name FROM coins")
+    suspend fun getNames(): List<String>
+
     @Update
     suspend fun updateFavourite(favouritesEntity: FavouritesEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun setCoinList(coins: List<CoinsEntity>)
+    suspend fun setCoinList(coins: List<CoinsEntity>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun setFavouriteList(list: List<FavouritesEntity>)
+    suspend fun setFavouriteList(list: List<FavouritesEntity>)
 }

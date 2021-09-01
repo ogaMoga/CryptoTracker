@@ -11,6 +11,7 @@ import org.koin.core.context.startKoin
 class App: Application() {
     companion object {
         const val ITEM_ID_KEY = "user_id"
+        const val COIN_LIST_KEY = "coin_list"
     }
 
     override fun onCreate() {

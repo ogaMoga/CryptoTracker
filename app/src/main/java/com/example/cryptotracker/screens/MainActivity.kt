@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()   // place for screenNavigator.navigateUp()
+        if (!screenNavigator.navigateUp()) {
+            super.onBackPressed()
+        }
     }
 }

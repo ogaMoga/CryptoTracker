@@ -13,5 +13,5 @@ import androidx.room.PrimaryKey
 data class SearchEntity(
     @PrimaryKey val name: String,
     val isPopular: Boolean,
-    val time: Long
+    val time: Long?
 )

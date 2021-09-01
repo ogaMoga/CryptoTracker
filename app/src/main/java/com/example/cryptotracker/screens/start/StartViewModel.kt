@@ -44,6 +44,10 @@ class StartViewModel(
         navigator.toCard(coinName)
     }
 
+    fun navigateToSearch() {
+        navigator.toSearch(coinListLiveData.value?.data ?: emptyList())
+    }
+
     private fun postLoadingResource() {
         val resource = CoinListResource(Status.LOADING, null)
         postLiveData(resource)
