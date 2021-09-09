@@ -99,27 +99,24 @@ class CardFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun updateData(data: CardData) {
-        val formatter = NumberFormat.getCurrencyInstance()
+        var formatter = NumberFormat.getCurrencyInstance()
         formatter.maximumIntegerDigits = 10
+        formatter.maximumFractionDigits = 5
         description.text = data.description
         cbStar.isChecked = data.isFavourite
         rank.text =  "#" + data.rank.toString()
         price.text = formatter.format(data.price)
         marketCap.text = formatter.format(data.marketCap)
         volume24h.text = formatter.format(data.volume24h)
-        setDiff(data.percentChange1h, change1h)
-        setDiff(data.percentChange24h, change24h)
-        setDiff(data.percentChange7d, change7d)
-        setDiff(data.percentChange30d, change30d)
-        setDiff(data.percentChange60d, change60d)
-        setDiff(data.percentChange90d, change90d)
+        formatter = NumberFormat.getInstance()
+        formatter.maximumIntegerDigits = 3
+        change1h.setDiff(formatter, data.percentChange1h)
+        change24h.setDiff(formatter, data.percentChange24h)
+        change7d.setDiff(formatter, data.percentChange7d)
+        change30d.setDiff(formatter, data.percentChange30d)
+        change60d.setDiff(formatter, data.percentChange60d)
+        change90d.setDiff(formatter, data.percentChange90d)
     }
-
-    private fun setDiff(value: Double, textView: AppCompatTextView) {
-        textView.text = if (value > 0) { "+$value%" } else { "$value%" }
-        textView.setTextColor(if (value > 0) { Color.rgb(36, 178, 93) } else {Color.RED})
-    }
-
 
     companion object {
         fun newInstance(coinName: String): Fragment {
@@ -130,4 +127,10 @@ class CardFragment : Fragment() {
             return fragment
         }
     }
+}
+
+private fun AppCompatTextView.setDiff(formatter: NumberFormat, number: Double) {
+    val value = formatter.format(number)
+    text = if (number > 0) { "+$value%" } else { "$value%" }
+    setTextColor (if (number > 0) { Color.rgb(36, 178, 93) } else {Color.RED})
 }

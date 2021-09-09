@@ -1,5 +1,6 @@
 package com.example.cryptotracker.screens.start
 
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,6 +32,8 @@ class StartFragment : Fragment() {
 
     private val viewModel: StartViewModel by viewModel()
 
+    private var isDarkMode = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +50,9 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        isDarkMode = requireContext().resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 
         stockCoins = CoinAdapter(layoutInflater, stockStarListener, cardClickListener)
 
@@ -156,8 +162,11 @@ class StartFragment : Fragment() {
     }
 
     private fun AppCompatTextView.makeSelectedStyle() {
-        textSize = 20f
-        setTextColor(Color.BLACK)
+        if (isDarkMode) {
+            setTextColor(Color.WHITE)
+        } else {
+            setTextColor(Color.BLACK)
+        }
     }
 
     private fun AppCompatTextView.makeUnselectedStyle() {

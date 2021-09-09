@@ -17,8 +17,10 @@ import com.example.cryptotracker.screens.rv.CoinAdapter
 import com.example.cryptotracker.screens.rv.CoinClickListener
 import com.example.cryptotracker.screens.rv.StarClickListener
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class SearchFragment : Fragment() {
     private lateinit var etSearch: AppCompatEditText
@@ -108,9 +110,15 @@ class SearchFragment : Fragment() {
             for (name in nameList) {
                 val chip = Chip(context)
                 chip.text = name
+
+                val chipDrawable = ChipDrawable.createFromAttributes(
+                    context,
+                    null,
+                    0,
+                    R.style.chipStyle
+                )
+                chip.setChipDrawable(chipDrawable)
                 chip.isCheckable = false
-                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.chip_background))
-                chip.setTextAppearance(R.style.chipTextAppearance)
                 chip.setOnClickListener(chipClickListener)
                 this.addView(chip)
             }

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">CryptoTracker</string>
+
+    <string name="fragment__start__search_tv">Найти название или тикер</string>
+    <string name="fragment__search_empty__popular_tv">Популярные запросы</string>
+    <string name="fragment__search_empty__history_tv">Вы это искали</string>
+    <string name="stocks_tab_title">Все</string>
+    <string name="favourite_tab_title">Избранное</string>
+    <string name="fragment__card__price">Цена</string>
+    <string name="fragment__card__volume24h">Объём 24ч</string>
+    <string name="fragment__card__change1h">Изменение за 1ч</string>
+    <string name="fragment__card__change24h">Изменение за 24ч</string>
+    <string name="fragment__card__change7d">Изменение за 7 дней</string>
+    <string name="fragment__card__change30d">Изменение за 30 дней</string>
+    <string name="fragment__card__change60d">Изменение за 60 дней</string>
+    <string name="fragment__card__change90d">Изменение за 90 дней</string>
+    <string name="fragment__card__rank">Рейтинг</string>
+    <string name="fragment__card__marketcap">Рыночная капитализация</string>
+</resources>

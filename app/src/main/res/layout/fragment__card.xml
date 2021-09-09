@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="15dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_margin="15dp"
+        android:background="@color/transparent"
         android:src="@drawable/back_button"
         android:backgroundTint="@color/white"
         />
@@ -20,7 +22,6 @@
         android:id="@+id/fragment__card__title"
         style="@style/text"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_regular"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/fragment__card__description"
         app:layout_constraintEnd_toStartOf="@id/fragment__card__star"
@@ -186,11 +187,10 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fragment__card__price1h_value"
-                app:layout_constraintStart_toEndOf="@id/fragment__card__price1h"
+                app:layout_constraintStart_toStartOf="@id/fragment__card__price24h_value"
                 app:layout_constraintBaseline_toBaselineOf="@id/fragment__card__price1h"
                 style="@style/text"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:textSize="20sp"
                 android:fontFamily="@font/montserrat_regular"
@@ -238,11 +238,10 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fragment__card__price7d_value"
-                app:layout_constraintStart_toEndOf="@id/fragment__card__price7d"
+                app:layout_constraintStart_toStartOf="@id/fragment__card__price24h_value"
                 app:layout_constraintBaseline_toBaselineOf="@id/fragment__card__price7d"
                 style="@style/text"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:textSize="20sp"
                 android:fontFamily="@font/montserrat_regular"
@@ -264,11 +263,10 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fragment__card__price30d_value"
-                app:layout_constraintStart_toEndOf="@id/fragment__card__price30d"
+                app:layout_constraintStart_toStartOf="@id/fragment__card__price24h_value"
                 app:layout_constraintBaseline_toBaselineOf="@id/fragment__card__price30d"
                 style="@style/text"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:textSize="20sp"
                 android:fontFamily="@font/montserrat_regular"
@@ -290,11 +288,10 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fragment__card__price60d_value"
-                app:layout_constraintStart_toEndOf="@id/fragment__card__price60d"
+                app:layout_constraintStart_toStartOf="@id/fragment__card__price24h_value"
                 app:layout_constraintBaseline_toBaselineOf="@id/fragment__card__price60d"
                 style="@style/text"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:textSize="20sp"
                 android:fontFamily="@font/montserrat_regular"
@@ -316,11 +313,10 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fragment__card__price90d_value"
-                app:layout_constraintStart_toEndOf="@id/fragment__card__price90d"
+                app:layout_constraintStart_toStartOf="@id/fragment__card__price24h_value"
                 app:layout_constraintBaseline_toBaselineOf="@id/fragment__card__price90d"
                 style="@style/text"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:textSize="20sp"
                 android:fontFamily="@font/montserrat_regular"
