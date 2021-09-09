@@ -8,4 +8,15 @@
     <string name="fragment__search_empty__history_tv">You\'ve searched for this</string>
     <string name="stocks_tab_title">Stocks</string>
     <string name="favourite_tab_title">Favourite</string>
+    <string name="fragment__card__price">Price</string>
+    <string name="fragment__card__volume24h">Volume 24h</string>
+    <string name="fragment__card__marketCap">Market cap</string>
+    <string name="fragment__card__change1h">1 hour change</string>
+    <string name="fragment__card__change24h">24 hour change</string>
+    <string name="fragment__card__change7d">7 days change</string>
+    <string name="fragment__card__change30d">30 days change</string>
+    <string name="fragment__card__change60d">60 days change</string>
+    <string name="fragment__card__change90d">90 days change</string>
+    <string name="fragment__card__rank">Rank</string>
+    <string name="fragment__card__marketcap">Market cap</string>
 </resources>

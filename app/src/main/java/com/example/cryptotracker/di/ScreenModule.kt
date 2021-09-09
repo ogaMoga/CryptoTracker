@@ -13,10 +13,10 @@ import org.koin.dsl.module
 val screenModule = module {
     single { ScreenNavigator() }
 
-    single { CardUseCase(get(), get()) }
+    single { CardUseCase(get(), get(), get()) }
     viewModel { CardViewModel(get(), get()) }
 
-    single { ListUseCase(get(), get()) }
+    single { ListUseCase(get(), get(), get()) }
     viewModel { StartViewModel(get(), get()) }
 
     single { SearchUseCase(get(), get()) }

@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.cryptotracker.BuildConfig
 import com.example.cryptotracker.R
 import com.example.cryptotracker.domain.model.Coin
@@ -92,6 +93,7 @@ class CoinViewHolder(
         description.text = coin.description
         Glide.with(logo.context)
             .load(BuildConfig.BaseLogoUrl + coin.logo + ".png")
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(logo)
 
         price.text = "$" + coin.price
@@ -114,7 +116,7 @@ class CoinViewHolder(
     }
 
     private fun setCoinListener() {
-        card.setOnClickListener { _ -> coinListener.onCoinClicked(title.text.toString()) }
+        card.setOnClickListener { coinListener.onCoinClicked(title.text.toString()) }
     }
 }
 

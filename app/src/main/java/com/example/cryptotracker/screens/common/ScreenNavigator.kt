@@ -46,6 +46,7 @@ class ScreenNavigator() : FragNavController.RootFragmentListener {
     }
 
     fun toCard(coinName: String) {
+        fragNavController.clearStack()
         fragNavController.pushFragment(CardFragment.newInstance(coinName))
     }
 

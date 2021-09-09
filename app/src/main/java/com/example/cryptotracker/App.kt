@@ -10,7 +10,8 @@ import org.koin.core.context.startKoin
 
 class App: Application() {
     companion object {
-        const val ITEM_ID_KEY = "user_id"
+        const val ITEM_STAR_KEY = "item_star"
+        const val ITEM_ID_KEY = "item_id"
         const val COIN_LIST_KEY = "coin_list"
     }
 

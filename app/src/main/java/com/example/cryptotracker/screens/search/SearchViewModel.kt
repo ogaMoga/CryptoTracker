@@ -72,7 +72,4 @@ class SearchViewModel(
     private fun postPopular(coinList: List<String>) {
         _popularLiveData.postValue(coinList)
     }
-
-
-
 }

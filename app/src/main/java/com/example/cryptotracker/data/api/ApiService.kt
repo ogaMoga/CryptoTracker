@@ -7,14 +7,13 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 
 private const val API_KEY = BuildConfig.ApiKey
-private const val TOP_20 = "v1/cryptocurrency/listings/latest?limit=20&convert=USD"
-private const val LOGOS = "v1/cryptocurrency/info?aux=logo"
+private const val TOP_50 = "v1/cryptocurrency/listings/latest?limit=50&convert=USD"
 
 interface ApiService {
     @Headers(
         "Accept: application/json",
         "X-CMC_PRO_API_KEY: $API_KEY"
     )
-    @GET(TOP_20)
+    @GET(TOP_50)
     fun getCoinsList(): Call<GeneralApiResponse>
 }

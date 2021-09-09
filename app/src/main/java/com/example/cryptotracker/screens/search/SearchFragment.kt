@@ -1,17 +1,14 @@
 package com.example.cryptotracker.screens.search
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
-import androidx.core.view.setPadding
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptotracker.App
 import com.example.cryptotracker.R

@@ -81,7 +81,7 @@ class StartFragment : Fragment() {
 
         tabLayoutConfiguration()
 
-        viewModel.loadItem()
+        viewModel.loadData()
     }
 
     private val stockStarListener = object : StarClickListener {

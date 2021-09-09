@@ -9,7 +9,7 @@ import com.example.cryptotracker.data.database.model.*
 
 @Database(entities =
     [CoinsEntity::class,
-    GraphsEntity::class,
+    DetailsEntity::class,
     SearchEntity::class,
     FavouritesEntity::class],
     version = 1, exportSchema = false

@@ -18,7 +18,7 @@ class StartViewModel(
 
     val coinListLiveData: LiveData<CoinListResource> = _coinListLiveData
 
-    fun loadItem() {
+    fun loadData() {
         viewModelScope.launch {
             postLoadingResource()
             val result = useCase.loadCoinList()
