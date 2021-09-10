@@ -1,8 +1,7 @@
 package com.example.cryptotracker.screens
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cryptotracker.R
 import com.example.cryptotracker.screens.common.ScreenNavigator
 import org.koin.android.ext.android.inject

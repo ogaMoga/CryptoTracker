@@ -1,4 +1,4 @@
-package com.example.cryptotracker.di.core
+package com.example.cryptotracker.di
 
 import android.content.Context
 import androidx.room.Room

@@ -23,17 +23,17 @@ class SearchViewModel(
 
     private lateinit var coinList: List<Coin>
 
-    fun putCoinsList(list: List<Coin>) {
-        coinList = list.sortedByDescending { coin -> coin.isFavourite }
-    }
-
-    fun loadSearchData() {
+    fun loadData() {
         viewModelScope.launch {
             val popular = useCase.getPopular()
             val history = useCase.getHistory()
             postHistory(history)
             postPopular(popular)
         }
+    }
+
+    fun putCoinsList(list: List<Coin>) {
+        coinList = list.sortedByDescending { coin -> coin.isFavourite }
     }
 
     fun queryChanged(text: String) {
@@ -50,15 +50,15 @@ class SearchViewModel(
         }
     }
 
-    fun navigateToCard(coinName: String) {
-        addToHistory(coinName)
-        navigator.toCard(coinName)
-    }
-
     private fun addToHistory(coinName: String) {
         viewModelScope.launch {
             useCase.addToHistory(coinName)
         }
+    }
+
+    fun navigateToCard(coinName: String) {
+        addToHistory(coinName)
+        navigator.toCard(coinName)
     }
 
     private fun postSearchList(coinList: List<Coin>) {

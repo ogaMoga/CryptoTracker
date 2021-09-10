@@ -1,11 +1,10 @@
-package com.example.cryptotracker.di.core
+package com.example.cryptotracker.di
 
 import com.example.cryptotracker.data.repository.*
 import org.koin.dsl.module
 
 val repositoryModule = module {
     single { CardLocalRepository(get())}
-    single { CardRemoteRepository(get()) }
 
     single { ListLocalRepository(get()) }
     single { ListRemoteRepository(get()) }

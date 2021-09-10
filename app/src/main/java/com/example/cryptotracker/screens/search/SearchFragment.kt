@@ -1,12 +1,10 @@
 package com.example.cryptotracker.screens.search
 
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +18,6 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class SearchFragment : Fragment() {
     private lateinit var etSearch: AppCompatEditText
@@ -53,7 +50,7 @@ class SearchFragment : Fragment() {
         val list = arguments?.getParcelableArrayList<Coin>(App.COIN_LIST_KEY) ?: emptyList()
         viewModel.putCoinsList(list)
 
-        viewModel.loadSearchData()
+        viewModel.loadData()
 
         coins = CoinAdapter(layoutInflater, starListener, cardClickListener)
 

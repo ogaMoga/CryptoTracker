@@ -1,9 +1,9 @@
 package com.example.cryptotracker
 
 import android.app.Application
-import com.example.cryptotracker.di.core.databaseModule
-import com.example.cryptotracker.di.core.networkModule
-import com.example.cryptotracker.di.core.repositoryModule
+import com.example.cryptotracker.di.databaseModule
+import com.example.cryptotracker.di.networkModule
+import com.example.cryptotracker.di.repositoryModule
 import com.example.cryptotracker.di.screenModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin

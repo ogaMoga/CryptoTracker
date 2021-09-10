@@ -28,17 +28,17 @@ class CardViewModel(
         }
     }
 
-    fun setFavourite(isFavourite: Boolean) {
-        viewModelScope.launch {
-            useCase.setFavourite(coinName, isFavourite)
-        }
-    }
-
     fun refreshData() {
         viewModelScope.launch {
             postLoadingResource()
             val result = useCase.refreshCoinDetails(coinName)
             postLiveData(result)
+        }
+    }
+
+    fun setFavourite(isFavourite: Boolean) {
+        viewModelScope.launch {
+            useCase.setFavourite(coinName, isFavourite)
         }
     }
 

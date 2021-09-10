@@ -1,4 +1,4 @@
-package com.example.cryptotracker.di.core
+package com.example.cryptotracker.di
 
 import com.example.cryptotracker.data.api.ApiFactory
 import org.koin.dsl.module
