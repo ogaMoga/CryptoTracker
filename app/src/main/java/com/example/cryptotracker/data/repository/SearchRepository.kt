@@ -38,8 +38,8 @@ class SearchRepository @Inject constructor(
     suspend fun addRequest(name: String) {
         val oldEntity = dao.getEntityByName(name)
         val newEntity = SearchEntity(
-            name = oldEntity.name,
-            isPopular = oldEntity.isPopular,
+            name = oldEntity?.name ?: name,
+            isPopular = oldEntity?.isPopular ?: false,
             time = System.currentTimeMillis()
         )
         dao.addRequest(newEntity)
