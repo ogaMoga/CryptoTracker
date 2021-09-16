@@ -16,3 +16,4 @@
 * _Room_ for work with database
 * _Dagger 2_ for implement Dependency Injection Pattern
 * _Glide_ for load, show and cache logos
+* _FragNav_ for navigation between fragments
