@@ -3,26 +3,21 @@ package com.example.cryptotracker.screens.card
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.text.style.TtsSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.cryptotracker.App
-import com.example.cryptotracker.BuildConfig
 import com.example.cryptotracker.R
+import com.example.cryptotracker.appComponent
 import com.example.cryptotracker.domain.model.CardData
 import com.example.cryptotracker.domain.model.Status
-import kotlinx.coroutines.flow.DEFAULT_CONCURRENCY
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.NumberFormat
+import javax.inject.Inject
 
 class CardFragment : Fragment() {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -41,7 +36,13 @@ class CardFragment : Fragment() {
     private lateinit var change60d: AppCompatTextView
     private lateinit var change90d: AppCompatTextView
 
-    private val viewModel: CardViewModel by viewModel()
+    @Inject
+    lateinit var viewModel: CardViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireContext().appComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

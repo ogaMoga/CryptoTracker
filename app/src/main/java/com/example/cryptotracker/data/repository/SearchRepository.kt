@@ -3,8 +3,9 @@ package com.example.cryptotracker.data.repository
 import com.example.cryptotracker.data.database.dao.SearchDao
 import com.example.cryptotracker.data.database.model.SearchEntity
 import com.example.cryptotracker.exception.DatabaseException
+import javax.inject.Inject
 
-class SearchRepository(
+class SearchRepository @Inject constructor(
     private val dao: SearchDao
 ) {
     suspend fun getHistory() : List<String> {

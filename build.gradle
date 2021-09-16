@@ -5,8 +5,8 @@ buildscript {
         fragNavVersion = "3.3.0"
         retrofitVersion = "2.9.0"
         roomVersion = "2.3.0"
-        koinVersion = "2.2.3"
         glideVersion = "4.12.0"
+        daggerVersion = "2.36"
     }
     repositories {
         google()

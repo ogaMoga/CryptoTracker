@@ -8,8 +8,9 @@ import com.example.cryptotracker.exception.DatabaseException
 import com.example.cryptotracker.exception.LostConnectionException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class CardUseCase(
+class CardUseCase @Inject constructor(
     private val cardLocalRepository: CardLocalRepository,
     private val listLocalRepository: ListLocalRepository,
     private val listRemoteRepository: ListRemoteRepository

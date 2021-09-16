@@ -1,24 +1,15 @@
 package com.example.cryptotracker.di
 
-import com.example.cryptotracker.domain.usecase.CardUseCase
-import com.example.cryptotracker.domain.usecase.ListUseCase
-import com.example.cryptotracker.domain.usecase.SearchUseCase
-import com.example.cryptotracker.screens.card.CardViewModel
 import com.example.cryptotracker.screens.common.ScreenNavigator
-import com.example.cryptotracker.screens.search.SearchViewModel
-import com.example.cryptotracker.screens.start.StartViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
-val screenModule = module {
-    single { ScreenNavigator() }
-
-    single { CardUseCase(get(), get(), get()) }
-    viewModel { CardViewModel(get(), get()) }
-
-    single { ListUseCase(get(), get(), get()) }
-    viewModel { StartViewModel(get(), get()) }
-
-    single { SearchUseCase(get(), get()) }
-    viewModel { SearchViewModel(get(), get()) }
+@Module
+object ScreenModule {
+    @Provides
+    @Singleton
+    fun provideScreenNavigator(): ScreenNavigator {
+        return ScreenNavigator()
+    }
 }

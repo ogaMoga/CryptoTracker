@@ -4,8 +4,9 @@ import com.example.cryptotracker.data.database.dao.CardDao
 import com.example.cryptotracker.data.database.model.DetailsEntity
 import com.example.cryptotracker.domain.model.CardData
 import com.example.cryptotracker.exception.DatabaseException
+import javax.inject.Inject
 
-class CardLocalRepository(
+class CardLocalRepository @Inject constructor(
     private val cardDao: CardDao
 ) {
     suspend fun getCoinDetails(name: String): CardData {

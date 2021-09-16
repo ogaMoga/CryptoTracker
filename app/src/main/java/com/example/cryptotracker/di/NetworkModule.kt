@@ -1,8 +1,16 @@
 package com.example.cryptotracker.di
 
 import com.example.cryptotracker.data.api.ApiFactory
-import org.koin.dsl.module
+import com.example.cryptotracker.data.api.ApiService
+import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
-val networkModule = module {
-    single { ApiFactory.apiService }
+@Module
+object NetworkModule {
+    @Provides
+    @Singleton
+    fun provideApiService(): ApiService {
+        return ApiFactory.apiService
+    }
 }

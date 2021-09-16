@@ -9,8 +9,9 @@ import com.example.cryptotracker.domain.model.Status
 import com.example.cryptotracker.domain.usecase.CardUseCase
 import com.example.cryptotracker.screens.common.ScreenNavigator
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CardViewModel(
+class CardViewModel @Inject constructor(
     private val useCase: CardUseCase,
     private val navigator: ScreenNavigator
 ) : ViewModel() {

@@ -9,8 +9,9 @@ import com.example.cryptotracker.domain.model.Status
 import com.example.cryptotracker.domain.usecase.ListUseCase
 import com.example.cryptotracker.screens.common.ScreenNavigator
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class StartViewModel(
+class StartViewModel @Inject constructor(
     private val useCase: ListUseCase,
     private val navigator: ScreenNavigator
 ) : ViewModel() {

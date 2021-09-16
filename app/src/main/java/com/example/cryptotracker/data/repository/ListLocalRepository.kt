@@ -5,8 +5,9 @@ import com.example.cryptotracker.data.database.model.CoinsEntity
 import com.example.cryptotracker.data.database.model.FavouritesEntity
 import com.example.cryptotracker.domain.model.Coin
 import com.example.cryptotracker.exception.DatabaseException
+import javax.inject.Inject
 
-class ListLocalRepository(
+class ListLocalRepository @Inject constructor(
     private val dao: ListDao
 ) {
     suspend fun getCoinList() : List<Coin> {

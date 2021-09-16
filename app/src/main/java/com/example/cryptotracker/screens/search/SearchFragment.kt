@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptotracker.App
 import com.example.cryptotracker.R
+import com.example.cryptotracker.appComponent
 import com.example.cryptotracker.domain.model.Coin
 import com.example.cryptotracker.screens.rv.CoinAdapter
 import com.example.cryptotracker.screens.rv.CoinClickListener
@@ -17,7 +18,7 @@ import com.example.cryptotracker.screens.rv.StarClickListener
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
 class SearchFragment : Fragment() {
     private lateinit var etSearch: AppCompatEditText
@@ -28,13 +29,20 @@ class SearchFragment : Fragment() {
 
     private lateinit var coins: CoinAdapter
 
-    private val viewModel: SearchViewModel by viewModel()
+    @Inject
+    lateinit var viewModel: SearchViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireContext().appComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment__search, container, false)
+
         rootView.apply {
             etSearch = findViewById(R.id.fragment__search__et)
             recyclerView = findViewById(R.id.fragment__search__rv)
@@ -57,6 +65,7 @@ class SearchFragment : Fragment() {
         recyclerView.adapter = coins
 
         viewModel.coinListLiveData.observe(viewLifecycleOwner, { coinList ->
+
             if (coinList.isEmpty()) { //  place for not-found screen
                 setVisibility(isEmptyHolderVisible = true)
             } else {

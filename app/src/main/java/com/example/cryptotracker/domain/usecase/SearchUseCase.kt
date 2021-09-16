@@ -5,8 +5,9 @@ import com.example.cryptotracker.data.repository.SearchRepository
 import com.example.cryptotracker.exception.DatabaseException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class SearchUseCase(
+class SearchUseCase @Inject constructor(
     private val searchRepository: SearchRepository,
     private val listRepository: ListLocalRepository
 ) {

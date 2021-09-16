@@ -8,8 +8,9 @@ import com.example.cryptotracker.domain.model.Coin
 import com.example.cryptotracker.domain.usecase.SearchUseCase
 import com.example.cryptotracker.screens.common.ScreenNavigator
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel(
+class SearchViewModel @Inject constructor(
     private val useCase: SearchUseCase,
     private val navigator: ScreenNavigator
 ) : ViewModel() {

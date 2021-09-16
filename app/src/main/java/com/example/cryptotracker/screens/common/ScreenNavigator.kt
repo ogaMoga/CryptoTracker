@@ -11,7 +11,7 @@ import com.example.cryptotracker.screens.start.StartFragment
 import com.ncapdevi.fragnav.FragNavController
 import com.ncapdevi.fragnav.FragNavTransactionOptions
 
-class ScreenNavigator() : FragNavController.RootFragmentListener {
+class ScreenNavigator : FragNavController.RootFragmentListener {
     private lateinit var fragNavController: FragNavController
 
     fun init(fragmentManager: FragmentManager, savedInstanceState: Bundle?) {
